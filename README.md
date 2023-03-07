@@ -114,20 +114,36 @@ This `String` list will now only accept `String` objects and the compiler will
 be not accept any other values. We can also see that we can iterate through a
 `List` the same way we would iterate through an array.
 
+Note: We don't have to include the data type in the second diamond operator `<>`
+since we have it defined in the first part of the declaration:
+
+```java
+List<String> myStringList = new ArrayList<>();
+```
+
+The above is just as valid since the type of `ArrayList` is implied to hold a
+list of `String` objects.
+
 ### ArrayList Constructors
 
 Another way we could have written the above example is to define the list as an
 `ArrayList` from the start like so:
 
 ```java
-ArrayList<String> myStringList = new ArrayList<String>();
+ArrayList<String> myStringList = new ArrayList<>();
 ```
 
-If we know about how many items we will be putting in our array list, we could
-also specify the `ArrayList` size like so:
+While this is fine, it is almost always better to declare a list using `List`
+instead of `ArrayList`. Remember, `List` is an interface, and if we needed to
+swap out the implementation of an `ArrayList`, for maybe a `LinkedList`, then
+the change would be more difficult if being used by other classes within the
+codebase.
+
+If we know about how many items we will be putting in our list, we could also
+specify the `ArrayList` size like so:
 
 ```java
-ArrayList<String> myStringList = new ArrayList<String>(3);
+List<String> myStringList = new ArrayList<>(3);
 ```
 
 In the above line of code, we are saying we are expecting there to be about 3
@@ -143,7 +159,7 @@ import java.util.Arrays;
 
 public class ListExample {
     public static void main(String[] args) {
-        ArrayList<String> myStringList = new ArrayList<String>(Arrays.asList(
+        List<String> myStringList = new ArrayList<String>(Arrays.asList(
                 "first string",
                 "second string",
                 "third string"
