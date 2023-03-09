@@ -184,7 +184,75 @@ Here are the key methods of the `ArrayList` class:
 | `contains(Element item)`       | boolean                                      | Checks to see if a list contains a specific item    |
 | `isEmpty()`                    | boolean                                      | Checks to see if a list is empty or has a size of 0 |
 
-## References:
+## Lists and Objects
+
+As mentioned before, a `List` can hold any reference object; like `String`,
+`Integer`, `Double`, even an object we define! Let's create a `Person` class and
+fill a `List` with `Person` objects:
+
+```java
+public class Person {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+   @Override
+   public String toString() {
+      return "Person{" +
+              "name='" + name + '\'' +
+              ", age=" + age +
+              '}';
+   }
+}
+```
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ListExample {
+    public static void main(String[] args) {
+        List<Person> personList = new ArrayList<>(Arrays.asList(
+            new Person("Lily Aldrin", 27),
+            new Person("Marshall Eriksen", 27),
+            new Person("Robin Scherbatsky", 25)
+        ));
+        System.out.println(personList);
+    }
+}
+```
+
+If we run this code in the Java Visualizer, we can look at the `List` we created
+and how it is stored in memory:
+
+![arraylist-in-memory](https://curriculum-content.s3.amazonaws.com/java-mod-3/list/java-visualizer-arraylist-personlist.png)
+
+As we can see, the `List` is ordered by the way we put the elements in the
+`List`. If we finish running the program, the output would look like this:
+
+```text
+[Person{name='Lily Aldrin', age=27}, Person{name='Marshall Eriksen', age=27}, Person{name='Robin Scherbatsky', age=25}]
+```
+
+We'll look at this example a little more in detail in the next lesson.
+
+## References
 
 - [Java 17 List Interface](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)
 - [Java 17 ArrayList](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html)
