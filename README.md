@@ -5,6 +5,7 @@
 - Explain the List interface.
 - Explain an ArrayList and how it differs from an Array.
 - Review commonly used methods of the ArrayList.
+- Look at storing objects in a list and how to iterate through the list.
 
 ## List in Java
 
