@@ -257,7 +257,85 @@ As we can see, the `List` is ordered by the way we put the elements in the
 [Person{name='Lily Aldrin', age=27}, Person{name='Marshall Eriksen', age=27}, Person{name='Robin Scherbatsky', age=25}]
 ```
 
-We'll look at this example a little more in detail in the next lesson.
+Let's make the following changes to the `ListExample` class to iterate through
+using a `for` loop:
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ListExample {
+    public static void main(String[] args) {
+        List<Person> personList = new ArrayList<>(Arrays.asList(
+                new Person("Lily Aldrin", 27),
+                new Person("Marshall Eriksen", 27),
+                new Person("Robin Scherbatsky", 25)
+        ));
+
+        // Iterate through the Person List to print the names of each Person
+        for (Person person : personList) {
+            System.out.println(person.getName());
+        }
+    }
+}
+```
+
+We'll iterate through the `personList` we have created to print the names of
+each person. Notice, we can use a `for` loop here since we know how many people
+are in our list. We can also use an enhanced `for` loop here too - just like we
+would for an array.
+
+We will set a breakpoint at the `for` loop: `for (Person person : personList)`.
+Notice how each element in the `ArrayList` points to a `Person` object. We can
+see this if we look at the debug console:
+
+![arraylist-debugger](https://curriculum-content.s3.amazonaws.com/java-mod-3/collections-dynamic-binding/debugger-arraylist-personlist.png)
+
+Let's use the step-over action to see which `Person` object gets assigned to
+the variable `person` first:
+
+![first-iteration](https://curriculum-content.s3.amazonaws.com/java-mod-3/collections-dynamic-binding/debugger-arraylist-basic-personlist-iteration-1.png)
+
+As we can see, the `person` variable gets assigned to the first element in the
+`personList` when we iterate through. Iterating through an `ArrayList` is
+similar to iterating through an array - we will go through each element in the
+list in the order they were inserted. Let's use the step-into action now to see
+what happens when we call `person.getName()`:
+
+![first-iteration-getname](https://curriculum-content.s3.amazonaws.com/java-mod-3/collections-dynamic-binding/debugger-getname-1.png)
+
+We see that the execution jumps over to the `Person` class and calls the
+`getName()` method, which will return "Lily Aldrin" in this case. If we
+step-over, we'll be taken back to the `ListExample` class. When we step-over
+again, we'll see that the name is printed to the console:
+
+```text
+Lily Aldrin
+```
+
+If we continue stepping through this code, we'll notice that the `person`
+variable gets assigned to the `Person` object with "Marshall Eriksen" next:
+
+![second-iteration](https://curriculum-content.s3.amazonaws.com/java-mod-3/collections-dynamic-binding/debugger-arraylist-basic-personlist-iteration-2.png)
+
+We can use the step-into action again to see the execution jump to the `Person`
+class and call the `getName()` instance method. This will then return the
+value of `name` before hopping back to the loop in the `ListExample` class,
+just as we saw before.
+
+When we step-over one more time, we'll see the `person` variable get assigned
+to the last `Person` object in the `ArrayList`:
+
+![third-iteration](https://curriculum-content.s3.amazonaws.com/java-mod-3/collections-dynamic-binding/debugger-arraylist-basic-personlist-iteration-3.png)
+
+If we resume the program, we'll see the following output in the console:
+
+```text
+Lily Aldrin
+Marshall Eriksen
+Robin Scherbatsky
+```
 
 ## References
 
